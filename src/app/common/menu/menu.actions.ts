@@ -8,13 +8,13 @@ export const MenuActionTypes = {
 
 export class OpenMenuAction implements Action {
     type = MenuActionTypes.OPEN_MENU;
-    constructor(public payload: string) {}
 }
 
 export class CloseMenuAction implements Action {
     type = MenuActionTypes.CLOSE_MENU;
-    constructor(public payload: string) {}
 }
 
 
-export type MenuActions = null;
+export type MenuActions = 
+    OpenMenuAction |
+    CloseMenuAction;

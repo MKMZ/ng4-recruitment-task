@@ -20,3 +20,5 @@ export function metaReducer(state: any, action: any) {
 export const getMenuState = (state: AppState) => state.menu;
 
 const developmentReducer: Function = compose(storeLogger(), combineReducers)(reducers);
+
+export const isMenuOpen = createSelector(getMenuState, fromMenu.isMenuOpen);

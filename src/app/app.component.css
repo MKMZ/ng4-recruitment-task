@@ -1,0 +1,16 @@
+  
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+.example-sidenav-content {
+display: flex;
+height: 100%;
+width: 100%;
+align-items: center;
+justify-content: center;
+}
+
+.example-sidenav {
+padding: 20px;
+width: 100px;
+height: 100%
+}
