@@ -1,12 +1,12 @@
 import { createSelector } from 'reselect';
-import {storeLogger} from "ngrx-store-logger";
-import {compose} from "@ngrx/core"; 
-import {combineReducers} from "@ngrx/store";
+import {storeLogger} from 'ngrx-store-logger';
+import {compose} from '@ngrx/core';
+import {combineReducers} from '@ngrx/store';
 
-import * as fromMenu from "./menu/menu.reducer";
+import * as fromMenu from './menu/menu.reducer';
 
 export interface AppState {
-    menu: fromMenu.State
+    menu: fromMenu.State;
 }
 
 export const reducers = {

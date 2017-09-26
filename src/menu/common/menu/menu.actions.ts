@@ -3,7 +3,7 @@ import {Action} from '@ngrx/store';
 
 export const MenuActionTypes = {
     OPEN_MENU: '[Menu] Open Menu',
-    CLOSE_MENU: '[Menu] Close Menu'    
+    CLOSE_MENU: '[Menu] Close Menu'
 };
 
 export class OpenMenuAction implements Action {
@@ -15,6 +15,6 @@ export class CloseMenuAction implements Action {
 }
 
 
-export type MenuActions = 
+export type MenuActions =
     OpenMenuAction |
     CloseMenuAction;
