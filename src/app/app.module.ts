@@ -4,8 +4,8 @@ import { NgModule } from '@angular/core';
 import {MatButtonModule, MatSidenavModule} from '@angular/material';
 
 import { AppComponent } from './app.component';
-import {StoreModule} from "@ngrx/store"; 
-import {metaReducer} from "./common/index";
+import {StoreModule} from '@ngrx/store';
+import {metaReducer} from 'src/menu/common/index';
 
 @NgModule({
   declarations: [
