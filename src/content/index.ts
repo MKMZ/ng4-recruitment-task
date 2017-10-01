@@ -5,6 +5,6 @@ import { AppState } from 'shared/common/meta.reducer';
 
 export const getContentState = (state: AppState) => state.content;
 
-export const isMenuOpen = createSelector(getContentState, fromReducer.isAwaitingContent);
-
+export const isAwaitingContent = createSelector(getContentState, fromReducer.isAwaitingContent);
+export const getPostsData = createSelector(getContentState, fromReducer.postsData);
 

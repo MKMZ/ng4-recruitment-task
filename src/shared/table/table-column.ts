@@ -1,4 +1,5 @@
 export class TableColumn {
-    public name: string;
-    public key: string;
+
+    constructor(public name: String, public key: String) {
+    }
 }

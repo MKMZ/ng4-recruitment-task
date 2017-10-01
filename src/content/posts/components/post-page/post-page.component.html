@@ -5,21 +5,21 @@
     </md-form-field>
   </div>
 
-  <md-table #table [dataSource]="dataSource" mdSort>
+  <md-table #table [dataSource]="postsData$" mdSort>
 
     <ng-container *ngFor="let col of displayColumns" mdColumnDef="col.name">
-      <md-header-cell *mdHeaderCellDef md-sort-header>{{col.name}} </md-header-cell>
+      <md-header-cell *mdHeaderCellDef>{{col.name}} </md-header-cell>
       <md-cell *mdCellDef="let row"> {{row[col.key]}} </md-cell>
     </ng-container>
 
     <md-header-row *mdHeaderRowDef="displayedColumns"></md-header-row>
     <md-row *mdRowDef="let row; columns: displayedColumns;"></md-row>
   </md-table>
-  <md-paginator #paginator
-    [length]="dataSource.length"
+  <!-- <md-paginator #paginator
+    [length]="postsData$.data.length"
     [pageIndex]="0"
     [pageSize]="25"
     [pageSizeOptions]="[5, 10, 25, 100]">
-  </md-paginator>
+  </md-paginator> -->
 
 </div>
