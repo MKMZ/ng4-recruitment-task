@@ -6,7 +6,7 @@ import { PageNotFoundComponent } from 'content/errors/page-not-found/page-not-fo
 export const routes: Routes = [
     { path: 'posts', component: PostPageComponent },
     {
-      path: 'heroes',
+      path: 'home',
       component: HomeComponent,
       data: { title: 'Home Page' }
     },
