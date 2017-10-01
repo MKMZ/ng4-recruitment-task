@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Store } from '@ngrx/store';
 
-import * as fromRoot from './common/index';
-import * as menu from './common/menu/menu.actions';
+import * as fromRoot from 'menu/index';
+import * as menu from 'menu/common/menu.actions';
 
 @Component({
   selector: 'app-root',
@@ -18,11 +18,11 @@ export class AppComponent {
   }
 
   handleOpenMenu() {
-    this.store.dispatch(new menu.OpenMenuAction())
+    this.store.dispatch(new menu.OpenMenuAction());
   }
 
   handleCloseMenu() {
-    this.store.dispatch(new menu.CloseMenuAction())
+    this.store.dispatch(new menu.CloseMenuAction());
   }
 
 }

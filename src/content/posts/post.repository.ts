@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
-import { Post } from 'src/content/posts/post';
+import { Post } from 'content/posts/post';
 
 @Injectable()
 export class PostRepository {

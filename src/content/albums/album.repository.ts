@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
-import { Album } from 'src/content/albums/album';
-import { FakeRepository } from 'src/shared/fake.repository';
+import { Album } from 'content/albums/album';
+import { FakeRepository } from 'shared/fake.repository';
 
 @Injectable()
 export class AlbumRepository extends FakeRepository {

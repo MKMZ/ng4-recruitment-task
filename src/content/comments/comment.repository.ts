@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
-import { Comment } from 'src/content/comments/comment';
-import { Post } from 'src/content/posts/post';
-import { FakeRepository } from 'src/shared/fake.repository';
+import { Comment } from 'content/comments/comment';
+import { Post } from 'content/posts/post';
+import { FakeRepository } from 'shared/fake.repository';
 
 @Injectable()
 export class CommentRepository extends FakeRepository {

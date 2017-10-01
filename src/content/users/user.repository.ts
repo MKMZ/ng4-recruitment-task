@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
-import { User } from 'src/content/users/user';
-import { FakeRepository } from 'src/shared/fake.repository';
+import { User } from 'content/users/user';
+import { FakeRepository } from 'shared/fake.repository';
 
 @Injectable()
 export class UserRepository extends FakeRepository {

@@ -3,7 +3,7 @@ import {storeLogger} from 'ngrx-store-logger';
 import {compose} from '@ngrx/core';
 import {combineReducers} from '@ngrx/store';
 
-import * as fromMenu from './menu/menu.reducer';
+import * as fromMenu from 'menu/common/menu.reducer';
 
 export interface AppState {
     menu: fromMenu.State;
