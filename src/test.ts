@@ -6,6 +6,14 @@ import 'zone.js/dist/sync-test';
 import 'zone.js/dist/jasmine-patch';
 import 'zone.js/dist/async-test';
 import 'zone.js/dist/fake-async-test';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/operator/switchMap';
+import 'rxjs/add/observable/of';
+import 'rxjs/add/observable/fromEvent';
+import 'rxjs/add/operator/debounceTime';
+import 'rxjs/add/operator/distinctUntilChanged';
+import 'rxjs/add/observable/merge';
 import { getTestBed } from '@angular/core/testing';
 import {
   BrowserDynamicTestingModule,
