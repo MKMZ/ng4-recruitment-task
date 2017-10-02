@@ -6,11 +6,8 @@ import { TableDataSource } from 'shared/table/table-data-source';
 export abstract class TableComponent<T> {
 
   public dataSource: TableDataSource<T>;
-  public displayColumns: String[] | null;
-
-  @ViewChild(MdSort) sort: MdSort;
-  @ViewChild('filter') filter: ElementRef;
-  @ViewChild(MdPaginator) paginator: MdPaginator;
+  public displayColumns: TableColumn[] | null;
+  public columnKeys: String[] | null;
 
   constructor() { }
 

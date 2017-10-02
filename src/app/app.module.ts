@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
-import {MdButtonModule, MdSidenavModule, MdTableModule} from '@angular/material';
+import {MatButtonModule, MatSidenavModule, MatTableModule, MatPaginatorModule} from '@angular/material';
 
 import { AppComponent } from './app.component';
 import {StoreModule} from '@ngrx/store';
@@ -29,9 +29,10 @@ import { CdkTableModule } from '@angular/cdk/table';
     BrowserModule,
     BrowserAnimationsModule,
     HttpModule,
-    MdButtonModule,
-    MdSidenavModule,
-    MdTableModule,
+    MatButtonModule,
+    MatSidenavModule,
+    MatTableModule,
+    MatPaginatorModule,
     CdkTableModule,
     StoreModule.forRoot(reducers),
     RouterModule.forRoot(

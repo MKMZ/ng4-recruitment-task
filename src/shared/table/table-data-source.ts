@@ -1,31 +1,54 @@
 import { DataSource } from '@angular/cdk/collections';
 import { Observable } from 'rxjs/Observable';
-import { MatPaginator, MatSort } from '@angular/material';
+import { MdPaginator, MdSort } from '@angular/material';
 import 'rxjs/add/observable/merge';
 
 
 export class TableDataSource<T> extends DataSource<any> {
+    public data: T[];
+    public dataLength: number;
+
     constructor(private _database: Observable<T[]>,
-        private _paginator: MatPaginator,
-        private _sort: MatSort) {
+        private _paginator: MdPaginator,
+        private _sort: MdSort) {
         super();
+        this.dataLength = 0;
     }
 
 
     connect(): Observable<T[]> {
-        return this._database.map(arr => {
+        const displayDataChanges = [
+        ];
+        if (this._sort) {
+            displayDataChanges.push(this._sort.sortChange);
+        }
+        if (this._paginator) {
+            displayDataChanges.push(this._paginator.page);
+        }
+        console.log("data source");
+        console.log(this);
+        return Observable.merge(this._database, ...displayDataChanges).map(arr => {
+            if (arr instanceof Array) {
+                this.data = arr;
+                this.dataLength = this.data.length;
+            }
+            let result = null;
             console.log("inside connect");
             console.log(arr);
             console.log(this);
-            if (this._sort && this._sort.active) {
-                const key = this._sort.active;
-                arr = arr.sort((a, b) => (a[key] < a[key] ? -1 : 1) * (this._sort.direction === 'asc' ? 1 : -1));
+            if (arr) {
+                result = this.data.slice(0);
+                if (this._sort && this._sort.active) {
+                    const key = this._sort.active;
+                    result = result.sort((a, b) => (a[key] < a[key] ? -1 : 1) * (this._sort.direction === 'asc' ? 1 : -1));
+                }
+                if (this._paginator) {
+                    const startIndex = this._paginator.pageIndex * this._paginator.pageSize;
+                    result = result.splice(startIndex, this._paginator.pageSize);
+                }
             }
-            if (this._paginator) {
-                const startIndex = this._paginator.pageIndex * this._paginator.pageSize;
-                arr = arr.splice(startIndex, this._paginator.pageSize);
-            }
-            return arr;
+
+            return result;
         });
     }
 
