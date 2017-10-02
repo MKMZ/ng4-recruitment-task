@@ -1,7 +1,11 @@
 # Ng4RecruitmentTask
 
+xSolve Recruitment Task
 
 
+## Installing dependencies
+
+Run `npm install` to load all of the application's dependencies. Needs to be done before the building process.
 
 ## Build
 
@@ -11,9 +15,8 @@ Run `npm run build` to build the project. The build artifacts will be stored in 
 
 Run `npm run start` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
 
+## Author
 
+* **Rafal Klimek** - [MKMZ](https://github.com/MKMZ)
