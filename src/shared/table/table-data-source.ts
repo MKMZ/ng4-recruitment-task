@@ -39,7 +39,7 @@ export class TableDataSource<T> extends DataSource<any> {
                 this.dataLength = this.data.length;
             }
             let result = this.data ? this.data.slice(0) : null;
-            if (arr) {
+            if (result) {
                 result = this.filterData(result);
                 result = this.sortData(result);
                 result = this.paginateData(result);
@@ -69,7 +69,16 @@ export class TableDataSource<T> extends DataSource<any> {
     sortData(arr: T[]): T[] {
         if (this._sort && this._sort.active) {
             const key = this._sort.active;
-            arr = arr.sort((a, b) => (a[key] < a[key] ? -1 : 1) * (this._sort.direction === 'asc' ? 1 : -1));
+            arr = arr.sort((a, b) => {
+                let propertyA: number|string = '';
+                let propertyB: number|string = '';
+                [propertyA, propertyB] = [a[key], b[key]]
+
+                const valueA = isNaN(+propertyA) ? propertyA : +propertyA;
+                const valueB = isNaN(+propertyB) ? propertyB : +propertyB;
+
+                return (valueA < valueB ? -1 : 1) * (this._sort.direction === 'asc' ? 1 : -1);
+            });
         }
         return arr;
     }
