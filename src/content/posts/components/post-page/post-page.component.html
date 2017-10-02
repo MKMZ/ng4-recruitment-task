@@ -1,0 +1,24 @@
+<div class="example-container mat-elevation-z8">
+  <div class="example-header">
+    <md-form-field floatPlaceholder="never">
+      <input mdInput #filter placeholder="Filter">
+    </md-form-field>
+  </div>
+  <md-table #table [dataSource]="dataSource" mdSort>
+    
+    <ng-container *ngFor="let col of displayColumns" mdColumnDef="{{col.key}}">
+      <md-header-cell *mdHeaderCellDef md-sort-header="{{col.key}}"> {{col.name}} </md-header-cell>
+      <md-cell *mdCellDef="let row"> {{ row[col.key] }} </md-cell>
+    </ng-container>
+    
+        <md-header-row *mdHeaderRowDef="columnKeys"></md-header-row>
+        <md-row *mdRowDef="let row; columns: columnKeys;"></md-row>
+      </md-table>
+  <md-paginator #paginator
+    [length]="dataSource.dataLength"
+    [pageIndex]="0"
+    [pageSize]="pageSize"
+    [pageSizeOptions]="[5, 10, 25, 100]">
+  </md-paginator>
+
+</div>

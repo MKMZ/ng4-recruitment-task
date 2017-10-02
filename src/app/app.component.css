@@ -1,0 +1,30 @@
+
+.menu-sidenav-content {
+display: flex;
+height: 100%;
+align-items: center;
+justify-content: center;
+}
+
+.menu-sidenav {
+padding: 20px;
+width: 200px;
+height: 100%;
+}
+
+.mainContent {
+    padding: 15px 20px 0 200px;
+}
+
+.app-toolbar-menu {
+    color: white;
+}
+
+.sidenav-title {
+    font-size: 18px;
+    margin: 20px;
+}
+
+.sidenav-tab-button {
+    margin: 10px;
+}

@@ -1,0 +1,24 @@
+<md-sidenav-container fullscreen>
+  <md-toolbar color="primary">
+      <a (click)="sidenav.open()" href="javascript:;">
+          <i class="material-icons app-toolbar-menu">menu</i>
+      </a>
+      <span class="app-toolbar-filler"></span>
+    
+  </md-toolbar>
+  <md-sidenav #sidenav opened="this.isMenuOpen$" class="menu-sidenav">
+      <span class="sidenav-title">xSolve Task</span>
+      <button class="sidenav-tab-button" md-button routerLink=".">Home</button>
+      <button class="sidenav-tab-button" md-button routerLink="posts">Posts</button>
+      <button class="sidenav-tab-button" md-button routerLink="users">Users</button>
+      <button class="sidenav-tab-button" md-button (click)="goToXSolve()">xSolve</button>
+    </md-sidenav>
+  <div>
+      <simple-notifications ></simple-notifications>
+      <div class="mainContent">
+          <router-outlet></router-outlet>
+      </div>  
+      
+    </div>
+
+</md-sidenav-container>
