@@ -6,6 +6,7 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 
 export class TableDataSource<T> extends DataSource<any> {
+
     public data: T[];
     public dataLength: number;
 
@@ -39,33 +40,46 @@ export class TableDataSource<T> extends DataSource<any> {
             }
             let result = this.data ? this.data.slice(0) : null;
             if (arr) {
-                if (this.filter) {
-                    result = result.filter((item: T) => {
-                        let searchStr = '';
-                        for (const key of this._filterFields) {
-                            if (item[key]) {
-                                searchStr = item[key].toString().toLowerCase();
-                            }
-                            console.log(searchStr);
-                        }
-                        return searchStr.indexOf(this.filter.toLowerCase()) !== -1;
-                    });
-                }
-
-                if (this._sort && this._sort.active) {
-                    const key = this._sort.active;
-                    result = result.sort((a, b) => (a[key] < a[key] ? -1 : 1) * (this._sort.direction === 'asc' ? 1 : -1));
-                }
-                if (this._paginator) {
-                    const startIndex = this._paginator.pageIndex * this._paginator.pageSize;
-                    result = result.splice(startIndex, this._paginator.pageSize);
-                }
+                result = this.filterData(result);
+                result = this.sortData(result);
+                result = this.paginateData(result);
             }
-            console.log()
             return result;
         });
     }
 
     disconnect(): void {
     }
+
+    filterData(arr: T[]): T[] {
+        if (this.filter) {
+            arr = arr.filter((item: T) => {
+                let searchStr = '';
+                for (const key of this._filterFields) {
+                    if (item[key]) {
+                        searchStr = item[key].toString().toLowerCase();
+                    }
+                }
+                return searchStr.indexOf(this.filter.toLowerCase()) !== -1;
+            });
+        }
+        return arr;
+    }
+
+    sortData(arr: T[]): T[] {
+        if (this._sort && this._sort.active) {
+            const key = this._sort.active;
+            arr = arr.sort((a, b) => (a[key] < a[key] ? -1 : 1) * (this._sort.direction === 'asc' ? 1 : -1));
+        }
+        return arr;
+    }
+
+    paginateData(arr: T[]): T[] {
+        if (this._paginator) {
+            const startIndex = this._paginator.pageIndex * this._paginator.pageSize;
+            arr = arr.splice(startIndex, this._paginator.pageSize);
+        }
+        return arr;
+    }
+
 }
