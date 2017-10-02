@@ -10,11 +10,11 @@ export class UserRepository extends FakeRepository {
   getUsers(): Observable<User[]> {
     const reqUrl = `${this.rootUrl}/users`;
     return this.http.get(reqUrl, {})
-      .map(res => res.json().results.map(item => {
+      .map(res => res.json().map(item => {
         return new User(item);
       }))
       .catch(error => Observable.throw(
-        error.json().error || 'Error during the process of getting Posts')
+        error.json().error || 'Error during the process of getting Users')
       );
   }
 }

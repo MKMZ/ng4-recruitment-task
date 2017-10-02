@@ -72,7 +72,7 @@ export class TableDataSource<T> extends DataSource<any> {
             arr = arr.sort((a, b) => {
                 let propertyA: number|string = '';
                 let propertyB: number|string = '';
-                [propertyA, propertyB] = [a[key], b[key]]
+                [propertyA, propertyB] = [a[key], b[key]];
 
                 const valueA = isNaN(+propertyA) ? propertyA : +propertyA;
                 const valueB = isNaN(+propertyB) ? propertyB : +propertyB;

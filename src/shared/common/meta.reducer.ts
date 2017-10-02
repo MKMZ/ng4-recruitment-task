@@ -35,3 +35,7 @@ export const getContentState = (state: AppState) => state.content;
 export const isAwaitingContent = createSelector(getContentState, fromContent.isAwaitingContent);
 export const postsData = createSelector(getContentState, fromContent.postsData);
 export const getPostTable = createSelector(getContentState, fromContent.getPostTable);
+
+export const usersData = createSelector(getContentState, fromContent.usersData);
+export const getUserTable = createSelector(getContentState, fromContent.getUserTable);
+

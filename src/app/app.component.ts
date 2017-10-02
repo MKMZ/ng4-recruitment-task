@@ -26,4 +26,8 @@ export class AppComponent {
     this.store.dispatch(new menu.CloseMenuAction());
   }
 
+  goToXSolve() {
+    window.location.href = 'https://xsolve.software/';
+  }
+
 }

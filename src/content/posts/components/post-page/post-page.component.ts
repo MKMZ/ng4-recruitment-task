@@ -23,10 +23,6 @@ import 'rxjs/add/operator/distinctUntilChanged';
 })
 export class PostPageComponent extends TableComponent<Post> implements OnInit {
 
-  @ViewChild('filter') filter: ElementRef;
-  @ViewChild(MdPaginator) paginator: MdPaginator;
-  @ViewChild(MdSort) sort: MdSort;
-
   ngOnInit(): void {
     this.dataSource = new TableDataSource<Post>(
       this.store.select(metaReducer.postsData),
@@ -45,8 +41,6 @@ export class PostPageComponent extends TableComponent<Post> implements OnInit {
     this.bindPaginator();
 
     this.bindFilter();
-    console.log("post page comp");
-    console.log(this);
   }
 
   constructor(private store: Store<fromRoot.AppState>, private postRepository: PostRepository) {

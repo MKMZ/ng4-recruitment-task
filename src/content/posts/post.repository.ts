@@ -2,13 +2,11 @@ import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { Post } from 'content/posts/post';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/catch';
+import { FakeRepository } from 'shared/fake.repository';
 
 @Injectable()
-export class PostRepository {
-  private rootUrl = 'http://jsonplaceholder.typicode.com';
-  constructor (private http: Http) {}
+export class PostRepository extends FakeRepository {
+
 
   getPosts(): Observable<Post[]> {
     const reqUrl = `${this.rootUrl}/posts`;

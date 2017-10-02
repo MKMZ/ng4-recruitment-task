@@ -7,7 +7,11 @@
     
   </md-toolbar>
   <md-sidenav #sidenav opened="this.isMenuOpen$" class="menu-sidenav">
-      Jolly good!
+      <span class="sidenav-title">xSolve Task</span>
+      <button class="sidenav-tab-button" md-button routerLink=".">Home</button>
+      <button class="sidenav-tab-button" md-button routerLink="posts">Posts</button>
+      <button class="sidenav-tab-button" md-button routerLink="users">Users</button>
+      <button class="sidenav-tab-button" md-button (click)="goToXSolve()">xSolve</button>
     </md-sidenav>
   <div>
       <div class="mainContent">

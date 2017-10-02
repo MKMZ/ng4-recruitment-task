@@ -17,13 +17,16 @@ import { Http, HttpModule } from '@angular/http';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { RouterModule } from '@angular/router';
 import { CdkTableModule } from '@angular/cdk/table';
+import { UserPageComponent } from 'content/users/user-page/user-page.component';
+import { UserRepository } from 'content/users/user.repository';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     PostPageComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    UserPageComponent
   ],
   imports: [
     BrowserModule,
@@ -47,7 +50,8 @@ import { CdkTableModule } from '@angular/cdk/table';
     ])
   ],
   providers: [
-    PostRepository
+    PostRepository,
+    UserRepository
   ],
   bootstrap: [
     AppComponent
