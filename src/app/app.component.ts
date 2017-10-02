@@ -5,6 +5,7 @@ import { Store } from '@ngrx/store';
 import * as fromRoot from 'shared/common/meta.reducer';
 import * as menu from 'menu/common/menu.actions';
 import * as metaReducer from 'shared/common/meta.reducer';
+import { NotificationsService } from 'angular2-notifications';
 
 @Component({
   selector: 'app-root',
@@ -14,7 +15,7 @@ import * as metaReducer from 'shared/common/meta.reducer';
 export class AppComponent {
   public isMenuOpen$: Observable<boolean>;
 
-  constructor(private store: Store<fromRoot.AppState>) {
+  constructor(private store: Store<fromRoot.AppState>, private _service: NotificationsService) {
     this.isMenuOpen$ = store.select(metaReducer.isMenuOpen);
   }
 

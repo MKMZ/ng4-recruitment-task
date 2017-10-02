@@ -11,9 +11,6 @@ import { TableColumn } from 'shared/table/table-column';
 import { TableDataSource } from 'shared/table/table-data-source';
 import { MdSort, MdPaginator } from '@angular/material';
 import { TableState } from 'shared/table/table-state';
-import 'rxjs/add/observable/fromEvent';
-import 'rxjs/add/operator/debounceTime';
-import 'rxjs/add/operator/distinctUntilChanged';
 
 
 @Component({

@@ -19,6 +19,7 @@ import { RouterModule } from '@angular/router';
 import { CdkTableModule } from '@angular/cdk/table';
 import { UserPageComponent } from 'content/users/user-page/user-page.component';
 import { UserRepository } from 'content/users/user.repository';
+import { SimpleNotificationsModule } from 'angular2-notifications';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { UserRepository } from 'content/users/user.repository';
     BrowserModule,
     BrowserAnimationsModule,
     HttpModule,
+    SimpleNotificationsModule.forRoot(),
     MatButtonModule,
     MatSidenavModule,
     MatToolbarModule,
