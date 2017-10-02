@@ -1,9 +1,11 @@
 import * as content from './content.actions';
 import { Post } from 'content/posts/post';
+import { TableState } from 'shared/table/table-state';
 
 export interface ContentState {
     awaitingSize: number;
     posts: Post[];
+    postTable: TableState;
 }
 
 export function reducer(state = initialState, action: content.ContentActions): ContentState {
@@ -29,6 +31,11 @@ export function reducer(state = initialState, action: content.ContentActions): C
                 awaitingSize: state.awaitingSize - 1
             });
         }
+        case content.ContentActionTypes.CHANGE_POST_TAB: {
+            return Object.assign({}, state, {
+                postTable: action.payload
+            });
+        }
         default:
             return state;
     }
@@ -36,8 +43,12 @@ export function reducer(state = initialState, action: content.ContentActions): C
 
 const initialState: ContentState = {
     awaitingSize: 0,
-    posts: null
+    posts: null,
+    postTable: new TableState(
+        +localStorage.getItem(content.ContentActionTypes.CHANGE_POST_TAB)
+    )
 };
 
 export const isAwaitingContent = (state: ContentState) => state.awaitingSize > 0;
 export const postsData = (state: ContentState) => state.posts;
+export const getPostTable = (state: ContentState) => state.postTable;

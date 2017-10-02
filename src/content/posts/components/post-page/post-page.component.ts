@@ -3,12 +3,15 @@ import { TableComponent } from 'shared/table/components/table.component';
 import { Post } from 'content/posts/post';
 import { PostRepository } from 'content/posts/post.repository';
 import * as fromRoot from 'shared/common/meta.reducer';
+import * as content from 'content/common/content.actions';
 import { Store } from '@ngrx/store';
 import * as metaReducer from 'shared/common/meta.reducer';
 import { Observable } from 'rxjs/Observable';
 import { TableColumn } from 'shared/table/table-column';
 import { TableDataSource } from 'shared/table/table-data-source';
 import { MdSort, MdPaginator } from '@angular/material';
+import { TableState } from 'shared/table/table-state';
+
 
 @Component({
   selector: 'app-post-page',
@@ -17,24 +20,32 @@ import { MdSort, MdPaginator } from '@angular/material';
 })
 export class PostPageComponent extends TableComponent<Post> implements OnInit {
 
-  @ViewChild(MdSort) sort: MdSort;
   @ViewChild('filter') filter: ElementRef;
   @ViewChild(MdPaginator) paginator: MdPaginator;
+  @ViewChild(MdSort) sort: MdSort;
 
   ngOnInit(): void {
-    console.log("post page comp");
-    console.log(this);
     this.dataSource = new TableDataSource<Post>(
       this.store.select(metaReducer.postsData),
       this.paginator,
-      this.sort
+      this.sort,
+      ['title', 'body']
     );
     this.displayColumns = [
-      new TableColumn('id', 'ID'),
+      new TableColumn('ID', 'id'),
       new TableColumn('Title', 'title'),
       new TableColumn('Body', 'body')
     ];
     this.columnKeys = this.displayColumns.map(item => item.key);
+
+    this.tableProps = this.store.select(metaReducer.getPostTable);
+    this.pageSize = +localStorage.getItem(content.ContentActionTypes.CHANGE_POST_TAB);
+
+    this.paginator.page.subscribe(change => this.store.dispatch(
+      new content.ChangePostTable(new TableState(change.pageSize))
+    ));
+    console.log("post page comp");
+    console.log(this);
   }
 
   constructor(private store: Store<fromRoot.AppState>, private postRepository: PostRepository) {

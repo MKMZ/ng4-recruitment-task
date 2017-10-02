@@ -7,7 +7,7 @@
   <md-table #table [dataSource]="dataSource" mdSort>
     
     <ng-container *ngFor="let col of displayColumns" mdColumnDef="{{col.key}}">
-      <md-header-cell *mdHeaderCellDef md-sort-header> {{col.name}} </md-header-cell>
+      <md-header-cell *mdHeaderCellDef md-sort-header="{{col.key}}"> {{col.name}} </md-header-cell>
       <md-cell *mdCellDef="let row"> {{ row[col.key] }} </md-cell>
     </ng-container>
     
@@ -17,7 +17,7 @@
   <md-paginator #paginator
     [length]="dataSource.dataLength"
     [pageIndex]="0"
-    [pageSize]="25"
+    [pageSize]="pageSize"
     [pageSizeOptions]="[5, 10, 25, 100]">
   </md-paginator>
 
