@@ -1,13 +1,19 @@
-<md-sidenav-container >
-  <md-sidenav #sidenav opened="this.isMenuOpen$">
-    Jolly good!
-  </md-sidenav>
-
+<md-sidenav-container fullscreen>
+  <md-toolbar color="primary">
+      <a (click)="sidenav.open()" href="javascript:;">
+          <i class="material-icons app-toolbar-menu">menu</i>
+      </a>
+      <span class="app-toolbar-filler"></span>
+    
+  </md-toolbar>
+  <md-sidenav #sidenav opened="this.isMenuOpen$" class="menu-sidenav">
+      Jolly good!
+    </md-sidenav>
   <div>
-      <router-outlet></router-outlet>
-    <button type="button" md-button (click)="sidenav.open()">
-      Open sidenav
-    </button>
-  </div>
+      <div class="mainContent">
+          <router-outlet></router-outlet>
+      </div>  
+      
+    </div>
 
 </md-sidenav-container>
