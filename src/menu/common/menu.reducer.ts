@@ -1,10 +1,10 @@
 import * as menu from './menu.actions';
 
-export interface State {
+export interface MenuState {
     isOpen: boolean;
 }
 
-export function reducer(state = initialState, action: menu.MenuActions): State {
+export function reducer(state = initialState, action: menu.MenuActions): MenuState {
     switch (action.type) {
         case menu.MenuActionTypes.OPEN_MENU: {
             return Object.assign({}, state, {
@@ -21,8 +21,8 @@ export function reducer(state = initialState, action: menu.MenuActions): State {
     }
 }
 
-const initialState: State = {
+const initialState: MenuState = {
     isOpen: true
 };
 
-export const isMenuOpen = (state: State) => state.isOpen;
+export const isMenuOpen = (state: MenuState) => state.isOpen;

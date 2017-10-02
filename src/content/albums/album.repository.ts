@@ -8,7 +8,7 @@ import { FakeRepository } from 'shared/fake.repository';
 export class AlbumRepository extends FakeRepository {
 
   getAlbums(): Observable<Album[]> {
-    const reqUrl = `{this.rootUrl}/users`;
+    const reqUrl = `${this.rootUrl}/users`;
     return this.http.get(reqUrl, {})
       .map(res => res.json().results.map(item => {
         return new Album(item);

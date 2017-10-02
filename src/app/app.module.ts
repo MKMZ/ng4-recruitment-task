@@ -5,16 +5,17 @@ import {MatButtonModule, MatSidenavModule, MatTableModule} from '@angular/materi
 
 import { AppComponent } from './app.component';
 import {StoreModule} from '@ngrx/store';
-import {metaReducer} from 'shared/common/meta.reducer';
+import {reducers} from 'shared/common/meta.reducer';
 import { HomeComponent } from 'content/home/home.component';
 import { PostPageComponent } from 'content/posts/components/post-page/post-page.component';
 import { routes } from 'shared/common/routes';
-import { RouterModule } from '@angular/router';
 import { PageNotFoundComponent } from 'content/errors/page-not-found/page-not-found.component';
 import { EffectsModule } from '@ngrx/effects';
 import { ContentEffects } from 'content/common/content.effects';
 import { PostRepository } from 'content/posts/post.repository';
 import { Http, HttpModule } from '@angular/http';
+import { StoreRouterConnectingModule } from '@ngrx/router-store';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -30,11 +31,12 @@ import { Http, HttpModule } from '@angular/http';
     MatButtonModule,
     MatSidenavModule,
     MatTableModule,
-    StoreModule.forRoot({ reducer: metaReducer }),
+    StoreModule.forRoot(reducers),
     RouterModule.forRoot(
       routes,
       { enableTracing: true }
     ),
+    StoreRouterConnectingModule,
     EffectsModule.forRoot([
       ContentEffects
     ])

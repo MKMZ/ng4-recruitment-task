@@ -4,7 +4,7 @@ import { Post } from 'content/posts/post';
 import { PostRepository } from 'content/posts/post.repository';
 import * as fromRoot from 'shared/common/meta.reducer';
 import { Store } from '@ngrx/store';
-import { getContentState, getPostsData } from 'content';
+import * as metaReducer from 'shared/common/meta.reducer';
 import { Observable } from 'rxjs/Observable';
 import { TableColumn } from 'shared/table/table-column';
 
@@ -15,11 +15,12 @@ import { TableColumn } from 'shared/table/table-column';
 })
 export class PostPageComponent extends TableComponent<Post> {
 
-  public postsData$: Observable<any>;
+  public postsData$: Observable<Post[]>;
 
   constructor(private store: Store<fromRoot.AppState>, private postRepository: PostRepository) {
     super();
-    this.postsData$ = store.select(getPostsData);
+    this.postsData$ = store.select(metaReducer.postsData);
+    this.postsData$.map(item => console.log(item));
     this.displayColumns = [
       new TableColumn('id', 'id'),
       new TableColumn('Title', 'title'),

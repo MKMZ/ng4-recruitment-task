@@ -1,4 +1,5 @@
-import {Action} from '@ngrx/store';
+import { ActionPayload } from 'shared/interfaces/action-payload';
+import { Action } from '@ngrx/store';
 
 
 export const ContentActionTypes = {
@@ -8,32 +9,28 @@ export const ContentActionTypes = {
     LOADED_POSTS: '[Content] Loaded Posts'
 };
 
-export class StartWaitingAction implements ActionPayload {
+export class StartWaitingAction implements Action {
     type = ContentActionTypes.START_WAITING;
     constructor(public payload: Object) {
     }
 }
 
-export class StopWaitingAction implements ActionPayload {
+export class StopWaitingAction implements Action {
     type = ContentActionTypes.STOP_WAITING;
     constructor(public payload: Object) {
     }
 }
 
-export class LoadPostsAction implements ActionPayload {
-    type = ContentActionTypes.START_WAITING;
+export class LoadPostsAction implements Action {
+    type = ContentActionTypes.LOAD_POSTS;
     constructor(public payload: Object) {
     }
 }
 
-export class LoadedPostsAction implements ActionPayload {
+export class LoadedPostsAction implements Action {
     type = ContentActionTypes.LOADED_POSTS;
     constructor(public payload: Object) {
     }
-}
-
-export interface ActionPayload extends Action {
-    payload: object | null;
 }
 
 export type ContentActions =

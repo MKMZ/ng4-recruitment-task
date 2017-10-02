@@ -9,7 +9,7 @@ import { FakeRepository } from 'shared/fake.repository';
 export class CommentRepository extends FakeRepository {
 
   getCommentsByPost(post: Post): Observable<Comment[]> {
-    const reqUrl = `{this.rootUrl}/posts/{post.id}/comments`;
+    const reqUrl = `${this.rootUrl}/posts/{post.id}/comments`;
     return this.http.get(reqUrl, {})
     .map(res => res.json().results.map(item => {
       return new Comment(item);
@@ -20,7 +20,7 @@ export class CommentRepository extends FakeRepository {
   }
 
   getComments(): Observable<Comment[]> {
-    const reqUrl = `{this.rootUrl}/comments`;
+    const reqUrl = `${this.rootUrl}/comments`;
     return this.http.get(reqUrl, {})
       .map(res => res.json().results.map(item => {
         return new Comment(item);

@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { Post } from 'content/posts/post';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch';
 
 @Injectable()
 export class PostRepository {
@@ -9,9 +11,9 @@ export class PostRepository {
   constructor (private http: Http) {}
 
   getPosts(): Observable<Post[]> {
-    const reqUrl = `{this.rootUrl}/posts`;
+    const reqUrl = `${this.rootUrl}/posts`;
     return this.http.get(reqUrl, {})
-      .map(res => res.json().results.map(item => {
+      .map(res => res.json().map(item => {
         return new Post(item);
       }))
       .catch(error => Observable.throw(

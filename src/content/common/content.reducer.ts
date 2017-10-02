@@ -1,12 +1,12 @@
 import * as content from './content.actions';
 import { Post } from 'content/posts/post';
 
-export interface State {
+export interface ContentState {
     awaitingSize: number;
     posts: Post[];
 }
 
-export function reducer(state = initialState, action: content.ContentActions): State {
+export function reducer(state = initialState, action: content.ContentActions): ContentState {
     switch (action.type) {
         case content.ContentActionTypes.START_WAITING: {
             return Object.assign({}, state, {
@@ -34,10 +34,10 @@ export function reducer(state = initialState, action: content.ContentActions): S
     }
 }
 
-const initialState: State = {
+const initialState: ContentState = {
     awaitingSize: 0,
     posts: null
 };
 
-export const isAwaitingContent = (state: State) => state.awaitingSize > 0;
-export const postsData = (state: State) => state.posts;
+export const isAwaitingContent = (state: ContentState) => state.awaitingSize > 0;
+export const postsData = (state: ContentState) => state.posts;

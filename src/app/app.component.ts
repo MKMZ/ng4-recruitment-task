@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store';
 
 import * as fromRoot from 'shared/common/meta.reducer';
 import * as menu from 'menu/common/menu.actions';
-import { getMenuState } from 'menu';
+import * as metaReducer from 'shared/common/meta.reducer';
 
 @Component({
   selector: 'app-root',
@@ -12,10 +12,10 @@ import { getMenuState } from 'menu';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  public isMenuOpen$: Observable<any>;
+  public isMenuOpen$: Observable<boolean>;
 
   constructor(private store: Store<fromRoot.AppState>) {
-    this.isMenuOpen$ = store.select(getMenuState);
+    this.isMenuOpen$ = store.select(metaReducer.isMenuOpen);
   }
 
   handleOpenMenu() {
