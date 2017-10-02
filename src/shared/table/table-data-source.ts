@@ -23,7 +23,8 @@ export class TableDataSource<T> extends DataSource<any> {
 
 
     connect(): Observable<T[]> {
-        const displayDataChanges = [
+        const displayDataChanges: any = [
+            this._filterChange
         ];
         if (this._sort) {
             displayDataChanges.push(this._sort.sortChange);
@@ -36,15 +37,21 @@ export class TableDataSource<T> extends DataSource<any> {
                 this.data = arr;
                 this.dataLength = this.data.length;
             }
-            let result = null;
+            let result = this.data ? this.data.slice(0) : null;
             if (arr) {
-                result = this.data.slice(0).filter((item: T) => {
-                    let searchStr = '';
-                    for (const key of this._filterFields) {
-                        searchStr = item[key].toLowerCase();
-                    }
-                    return searchStr.indexOf(this.filter.toLowerCase()) !== -1;
-                });
+                if (this.filter) {
+                    result = result.filter((item: T) => {
+                        let searchStr = '';
+                        for (const key of this._filterFields) {
+                            if (item[key]) {
+                                searchStr = item[key].toString().toLowerCase();
+                            }
+                            console.log(searchStr);
+                        }
+                        return searchStr.indexOf(this.filter.toLowerCase()) !== -1;
+                    });
+                }
+
                 if (this._sort && this._sort.active) {
                     const key = this._sort.active;
                     result = result.sort((a, b) => (a[key] < a[key] ? -1 : 1) * (this._sort.direction === 'asc' ? 1 : -1));
@@ -54,7 +61,7 @@ export class TableDataSource<T> extends DataSource<any> {
                     result = result.splice(startIndex, this._paginator.pageSize);
                 }
             }
-
+            console.log()
             return result;
         });
     }

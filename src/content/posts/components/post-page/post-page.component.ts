@@ -11,6 +11,9 @@ import { TableColumn } from 'shared/table/table-column';
 import { TableDataSource } from 'shared/table/table-data-source';
 import { MdSort, MdPaginator } from '@angular/material';
 import { TableState } from 'shared/table/table-state';
+import 'rxjs/add/observable/fromEvent';
+import 'rxjs/add/operator/debounceTime';
+import 'rxjs/add/operator/distinctUntilChanged';
 
 
 @Component({
@@ -39,11 +42,9 @@ export class PostPageComponent extends TableComponent<Post> implements OnInit {
     this.columnKeys = this.displayColumns.map(item => item.key);
 
     this.tableProps = this.store.select(metaReducer.getPostTable);
-    this.pageSize = +localStorage.getItem(content.ContentActionTypes.CHANGE_POST_TAB);
+    this.bindPaginator();
 
-    this.paginator.page.subscribe(change => this.store.dispatch(
-      new content.ChangePostTable(new TableState(change.pageSize))
-    ));
+    this.bindFilter();
     console.log("post page comp");
     console.log(this);
   }
@@ -51,5 +52,24 @@ export class PostPageComponent extends TableComponent<Post> implements OnInit {
   constructor(private store: Store<fromRoot.AppState>, private postRepository: PostRepository) {
     super();
   }
+
+  bindPaginator(): any {
+    this.pageSize = +localStorage.getItem(content.ContentActionTypes.CHANGE_POST_TAB);
+
+        this.paginator.page.subscribe(change => this.store.dispatch(
+          new content.ChangePostTable(new TableState(change.pageSize))
+        ));
+  }
+
+  bindFilter(): any {
+    Observable.fromEvent(this.filter.nativeElement, 'keyup')
+    .debounceTime(150)
+    .distinctUntilChanged()
+    .subscribe(() => {
+      if (!this.dataSource) { return; }
+      this.dataSource.filter = this.filter.nativeElement.value;
+    });
+  }
+
 
 }
