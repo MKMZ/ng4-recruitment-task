@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
-import {MatButtonModule, MatSidenavModule, MatTableModule} from '@angular/material';
+import {MdButtonModule, MdSidenavModule, MdTableModule} from '@angular/material';
 
 import { AppComponent } from './app.component';
 import {StoreModule} from '@ngrx/store';
@@ -16,6 +16,7 @@ import { PostRepository } from 'content/posts/post.repository';
 import { Http, HttpModule } from '@angular/http';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { RouterModule } from '@angular/router';
+import { CdkTableModule } from '@angular/cdk/table';
 
 @NgModule({
   declarations: [
@@ -28,9 +29,10 @@ import { RouterModule } from '@angular/router';
     BrowserModule,
     BrowserAnimationsModule,
     HttpModule,
-    MatButtonModule,
-    MatSidenavModule,
-    MatTableModule,
+    MdButtonModule,
+    MdSidenavModule,
+    MdTableModule,
+    CdkTableModule,
     StoreModule.forRoot(reducers),
     RouterModule.forRoot(
       routes,

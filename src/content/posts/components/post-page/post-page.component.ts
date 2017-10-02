@@ -7,6 +7,7 @@ import { Store } from '@ngrx/store';
 import * as metaReducer from 'shared/common/meta.reducer';
 import { Observable } from 'rxjs/Observable';
 import { TableColumn } from 'shared/table/table-column';
+import { TableDataSource } from 'shared/table/table-data-source';
 
 @Component({
   selector: 'app-post-page',
@@ -15,16 +16,22 @@ import { TableColumn } from 'shared/table/table-column';
 })
 export class PostPageComponent extends TableComponent<Post> {
 
-  public postsData$: Observable<Post[]>;
-
   constructor(private store: Store<fromRoot.AppState>, private postRepository: PostRepository) {
     super();
-    this.postsData$ = store.select(metaReducer.postsData);
-    this.postsData$.map(item => console.log(item));
+    this.dataSource = new TableDataSource<Post>(
+      store.select(metaReducer.postsData),
+      this.paginator,
+      this.sort
+    );
+    // this.displayColumns = [
+    //   new TableColumn('id', 'id'),
+    //   new TableColumn('Title', 'title'),
+    //   new TableColumn('Body', 'body')
+    // ];
     this.displayColumns = [
-      new TableColumn('id', 'id'),
-      new TableColumn('Title', 'title'),
-      new TableColumn('Body', 'body')
+      'id',
+      'title',
+      'body'
     ];
   }
 

@@ -36,7 +36,6 @@ export class ContentEffects {
     .ofType(content.ContentActionTypes.LOAD_POSTS)
     .map(toPayload)
     .switchMap(payload => {
-        console.log("inside loadPosts");
         return this.postRepository.getPosts()
             .map(res => new content.LoadedPostsAction(res));
     });
